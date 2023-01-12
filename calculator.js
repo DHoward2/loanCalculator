@@ -16,8 +16,8 @@ window.addEventListener('DOMContentLoaded', function() {
   function getCurrentUIValues() {
     return {
       amount: +(document.getElementById("loan-amount").value),
-      years: +(document.getElementById("loan-years").value),
-      rate: +(document.getElementById("loan-rate").value),
+      years: +(document.getElementById("loan-years").value)*12,
+      rate: +(document.getElementById("loan-rate").value)/12,
     }
   }
   const loanAmount = document.getElementById("loan-amount");
@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', function() {
   // calculate the monthly payment.  The output should be a string
   // that always has 2 decimal places.
   function calculateMonthlyPayment(values) {
-    let monthlyCal = ((values.amount * values.rate))/1-(1 + values.rate)**(-values.years);
+    let monthlyCal = ((values.amount * values.rate))/(1-((1 + values.rate)**(-values.years)));
     console.log((values.amount * values.rate));
     console.log(1 + values.rate);
     console.log(-values.years);
